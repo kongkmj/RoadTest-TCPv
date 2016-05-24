@@ -26,17 +26,18 @@ var server = net.createServer(function (socket) {
     console.log(b);
     var data2 = c-0;
     var data3 = b-0;
-
+    var discon_cnt =0;
 
       data4= data2;
       data5= data3;
     
-    //console.log(data3);
+    console.log("연결이 끊긴 횟수: "+discon_cnt);
     io.emit('chat message',data4,data5);
   });
 
   //client와 접속이 끊겻을때
   socket.on('close',function () {
+    discon_cnt+=1;
     console.log('client disconnected');
   });
   //client 가 접속 했을때
